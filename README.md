@@ -12,3 +12,7 @@ git config core.hooksPath .githooks
 Instalar golangci-lint para el linter
 
 `curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.10.1`
+
+## Instalar gofumpt para formatear el código
+
+```...```
