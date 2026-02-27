@@ -1,0 +1,23 @@
+run:
+  timeout: 5m
+  tests: false
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  gofumpt:
+    extra-rules: true
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck      # Verifica errores no manejados
+    - gosimple      # Sugiere simplificaciones de código
+    - govet         # Linter oficial de Go
+    - ineffassign   # Detecta asignaciones inútiles
+    - staticcheck   # Análisis estático avanzado
+    - typecheck     # Verifica tipos
+    - gofumpt       # Formateo estricto
+    - gosec         # Encuentra problemas de seguridad
+    - gocritic      # Buenas prácticas y rendimiento

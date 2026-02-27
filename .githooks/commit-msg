@@ -1,0 +1,19 @@
+#!/bin/sh
+# .githooks/commit-msg
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Expresión regular para Conventional Commits
+REGEX="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-zA-Z0-9_-]+\))?!?: .+"
+
+if ! echo "$COMMIT_MSG" | grep -Eq "$REGEX"; then
+    echo "❌ Error: El mensaje del commit no sigue el formato de Conventional Commits."
+    echo "Formato esperado: <tipo>[scope opcional]: <descripción>"
+    echo "Ejemplos válidos:"
+    echo "  feat: inicializa modelo de bubbletea"
+    echo "  fix(formulario): corrige validación de correo nulo"
+    exit 1
+fi
+
+echo "✅ Mensaje de commit válido."

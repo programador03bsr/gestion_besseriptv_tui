@@ -1,0 +1,22 @@
+#!/bin/sh
+# .githooks/pre-commit
+
+echo "Verificando formato y errores estáticos..."
+
+# Ejecutar go vet
+go vet ./...
+if [ $? -ne 0 ]; then
+    echo "❌ Error: 'go vet' encontró problemas. Revisa tu código."
+    exit 1
+fi
+
+# Ejecutar golangci-lint si está instalado
+if command -v golangci-lint >/dev/null 2>&1; then
+    golangci-lint run
+    if [ $? -ne 0 ]; then
+        echo "❌ Error: 'golangci-lint' encontró problemas. Commit abortado."
+        exit 1
+    fi
+fi
+
+echo "✅ Código validado."
